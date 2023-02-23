@@ -3,7 +3,7 @@ import { PieChart } from 'components/PieChart';
 import { TestChart } from 'components/TestChart';
 import React from 'react'
 import styled from "styled-components";
-
+// dashboard 용 main과 관련없음
 export default function Chart() {
     const gender = [{ man: 5207, woman: 5953 }]
     const age = [

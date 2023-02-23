@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import SouthIcon from '@mui/icons-material/South';
 import NorthIcon from '@mui/icons-material/North';
-
+// dashboard 용 main과 관련없음
 export default function FeaturedInfo() {
     return (
         <Featured>

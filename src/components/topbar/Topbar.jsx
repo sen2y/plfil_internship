@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-
+// dashboard 용 main과 관련없음
 export default function Topbar() {
     return (
         <Topbars>

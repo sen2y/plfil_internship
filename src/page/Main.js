@@ -15,7 +15,6 @@ import MaterialTable from "components/MaterialTable";
 
 function Main() {
 
-
     const [loading, setLoading] = useState(true);
     const [tabIndex, setTabIndex] = useState(0);
     const [years, setYears] = useState([]);

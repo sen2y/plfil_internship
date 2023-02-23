@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { fontSize } from '@mui/system';
 export default function Sidebar() {
+    // dashboard 용 main과 관련없음
     return (
         <Sidebars>
             <SidebarWrapper>
