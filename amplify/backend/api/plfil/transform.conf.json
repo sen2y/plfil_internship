@@ -1,0 +1,8 @@
+{
+    "Version": 5,
+    "ElasticsearchWarning": true,
+    "StackMapping": {
+        "QuerygetProfileVideoByUsernameResolver": "profileVideo",
+        "QuerygetAuditionPostByIDResolver": "AuditionPostModel"
+    }
+}

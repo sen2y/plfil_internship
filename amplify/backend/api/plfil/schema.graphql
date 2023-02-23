@@ -1,0 +1,808 @@
+type AuditionPostModel
+  @model
+  @searchable
+  @key(
+    name: "auditionPostsByID"
+    fields: ["id"]
+    queryField: "getAuditionPostByID"
+  )
+  @key(
+    name: "auditionsByDate"
+    fields: ["type", "createdAt"]
+    queryField: "getAuditionPostsByDate"
+  )
+  @key(
+    name: "auditionsByDueDate"
+    fields: ["type", "auditionEndAt"]
+    queryField: "getAuditionPostsByDueDate"
+  )
+  @key(
+    name: "auditionPostsByAwsID"
+    fields: ["awsID"]
+    queryField: "getAuditionPostsByAwsID"
+  )
+  @key(
+    name: "auditionPostsByUsername"
+    fields: ["username"]
+    queryField: "getAuditionPostsByUsername"
+  ) {
+  id: ID!
+  awsID: String!
+  type: String
+  username: String
+  title: String
+  contents: String
+  image: String
+  createdAt: String!
+  startAt: AWSTimestamp
+  endAt: AWSTimestamp
+  category: String
+  group: String
+  work_title: String
+  director: String
+  role: String
+  shootStartAt: AWSDate
+  times: String
+  rewardStart: Int
+  rewardEnd: Int
+  howmany: Int
+  gender: String
+  manager: String
+  phone: String
+  email: String
+  auditionEndAt: AWSDate
+  ageStart: Int
+  ageEnd: Int
+  shootEndAt: AWSDate
+  applyForm: String
+  deletedAt: String
+  aboutCharacter: String
+  parent: String
+  children: [String]
+  views: Int
+  roles: [String]
+  files: [String]
+  images: [String]
+  region: String
+  applyWay: String
+  wysiwyg: String
+  folder: AWSJSON
+  apcFolder: [AWSJSON]
+  apcFolders: [AWSJSON]
+  fileJsons: [AWSJSON]
+  applyNum: Int
+  filePrivate: Boolean
+  passList: [String]
+  applyOnlyOne: Boolean
+  showProgress: Int
+  rewardNego: Boolean
+  password: String
+}
+
+type ActorProfile
+  @model
+  @key(
+    name: "ActorProfileByAwsID"
+    fields: ["awsID"]
+    queryField: "getActorProfileByAwsID"
+  )
+  @key(
+    name: "actorProfileByDate"
+    fields: ["type", "createdAt"]
+    queryField: "getActorProfileByDate"
+  )
+  @key(
+    name: "actorProfileByUpdatedAt"
+    fields: ["type", "updatedAt"]
+    queryField: "getActorProfileByUpdatedAt"
+  )
+  @key(
+    name: "ActorProfileByUsername"
+    fields: ["username"]
+    queryField: "getActorProfileByUsername"
+  )
+  @key(
+    name: "ActorProfileByactorName"
+    fields: ["actorName"]
+    queryField: "getActorProfileByActorName"
+  )
+  @key(
+    name: "actorProfileByProfileUpdatedAt"
+    fields: ["type", "profileUpdatedAt"]
+    queryField: "getActorProfileByProfileUpdatedAt"
+  )
+  @searchable {
+  id: ID!
+  awsID: String
+  createdAt: String
+  updatedAt: String
+  deletedAt: String
+  type: String
+  username: String
+  gender: String
+  mainProfileImage: String
+  actorName: String
+  birthday: String
+  height: Float
+  weight: Float
+  email: String
+  phone: String
+  phonePrivate: Boolean
+  moreProfileImages: [String] #추가이미지
+  specialty: [String]
+  careers: [String]
+  careerJsons: [AWSJSON]
+  careerStat: AWSJSON
+  insta: String
+  youtube: String
+  homepage: String
+  aboutMe: String
+  pptProfile: String #ppt프로필 파일 path
+  pdfProfile: String #pdf프로필 파일 path
+  imgProfiles: [String] #pdf나 ppt프로필을 Image로 따서 저장한것 엔터용
+  youtubeProfiles: [String]
+  moreProfileVideos: [String]
+  backgroundColor: String
+  textColor: String
+  videos: [String]
+  profileVideos: [String]
+  profileVideoJsons: [AWSJSON]
+  engName: String
+  education: String
+  private: Boolean
+  views: Int
+  numOfCommercialFilmCareers: Int
+  numOfCommercialDramaCareers: Int
+  intro: String
+  imageKeywords: [String]
+  disableImageKeyword: String
+  agency: String
+  hasAgency: Boolean
+  namu: String
+  accessScope: Int
+  companyId: String
+
+  numOfAllCareers: Int
+  numOfCommercialFilmAll: Int
+  numOfCommercialFilmLead: Int
+  numOfCommercialFilmSupport: Int
+  numOfCommercialFilmMinor: Int
+  numOfIndeFilmAll: Int
+  numOfIndeFilmLead: Int
+  numOfIndeFilmSupport: Int
+  numOfIndeFilmMinor: Int
+  numOfTvDramaAll: Int
+  numOfTvDramaLead: Int
+  numOfTvDramaSupport: Int
+  numOfTvDramaMinor: Int
+
+  profileUpdatedAt: AWSDateTime #For Update then Sort
+  likeUsernameList: [String]
+  likeNum: Int
+
+  score: Int
+}
+
+type ActorCareer
+  @model
+  @key(name: "actorCareerbyActorProfile", fields: ["profileID"])
+  @key(
+    name: "actorCareersByAwsID"
+    fields: ["awsID"]
+    queryField: "getActorCareersByAwsID"
+  )
+  @key(
+    name: "actorCareersByProfileID"
+    fields: ["profileID"]
+    queryField: "getActorCareersByProfileID"
+  )
+  @key(
+    name: "actorCareersByUsername"
+    fields: ["username"]
+    queryField: "getActorCareersByUsername"
+  ) {
+  id: ID!
+  awsID: String!
+  type: String
+  profileID: String!
+  username: String
+  year: Int
+  category: String
+  title: String
+  role: String
+  images: [String]
+  videoLinks: [String]
+  videos: [String]
+  roleGrade: String
+}
+
+type profileVideo
+  @model
+  @key(
+    name: "profileVideosByUsername"
+    fields: ["username"]
+    queryField: "getProfileVideoByUsername"
+  )
+  @key(
+    name: "profileVideosByProfileID"
+    fields: ["profileID"]
+    queryField: "getProfileVideoByProfileID"
+  ) {
+  id: ID!
+  profileID: String
+  type: String
+  awsID: String
+  username: String
+  video: String
+  title: String
+  description: String
+  filename: String
+  originalPath: String
+  originalFilename: String
+}
+
+type UserModel
+  @model
+  @searchable
+  @key(
+    name: "userModelByAwsID"
+    fields: ["awsID"]
+    queryField: "getUserModelByAwsID"
+  )
+  @key(
+    name: "userModelByEmail"
+    fields: ["email"]
+    queryField: "getUserModelByEmail"
+  ) {
+  id: ID!
+  awsID: String
+  type: String
+  userTypes: [String]
+  username: String
+  profileImg: String
+  nickname: String
+  email: String
+  phone: String
+  actorProfiles: [String]
+  actorProfileID: String
+  job: String
+  tier: String
+  auditionPosts: [String]
+  appliedRoles: [String]
+  appliedRolesPlfil: [String]
+  appliedAuditionsPlfil: [String]
+  appliedRolesEmail: [String]
+  auditionLikes: [String]
+  profileLikes: [String]
+  boardPostLikes: [String]
+  boardPosts: [String]
+  likes: AWSJSON
+  deletedAt: String
+  pdfProfile: String
+  agree: Int #1:v1 동의, #2 v2필수만 전체동의 #3옵션도 동의
+  profileTourCoupon: Int
+  permissionGroupId: ID
+  permissionGroup: PermissionGroupModel
+    @connection(fields: ["permissionGroupId"])
+  events: AWSJSON
+  bookMarkedPostIdList: [String]
+  castingListIds: [String]
+  couponStamp: Int
+  recommender: String
+}
+
+type AuditionApplication @model {
+  id: ID!
+  type: String
+  applicantAwsID: String
+  applicantUsername: String
+  applicantProfileID: String
+  auditionID: String
+}
+
+type EmailApplication
+  @model
+  @key(
+    name: "emailApplicationsByAuditionID"
+    fields: ["auditionID"]
+    queryField: "getEmailApplicationsByAuditionID"
+  ) {
+  id: ID!
+  type: String
+  applicantAwsID: String
+  applicantUsername: String
+  applicantProfileID: String
+  auditionID: String
+  roleID: String
+  group: Int
+}
+
+type PlfilApplication
+  @model
+  @key(
+    name: "plfilApplicationsByAuditionID"
+    fields: ["auditionID"]
+    queryField: "getPlfilApplicationsByAuditionID"
+  )
+  @key(
+    name: "plfilApplicationsByRoleID"
+    fields: ["roleID"]
+    queryField: "getPlfilApplicationsByRoleID"
+  )
+  @key(
+    name: "plfilApplicationsByApplicantProfileID"
+    fields: ["applicantProfileID"]
+    queryField: "getPlfilApplicationsByApplicantProfileID"
+  )
+  @key(
+    name: "plfilApplicationsByProfileIdSortedByDate"
+    fields: ["applicantProfileID", "createdAt"]
+    queryField: "plfilApplicationsByProfileIdSortedByDate"
+  )
+  @key(
+    name: "plfilApplicationsByUsernameSortedByDate"
+    fields: ["applicantUsername", "createdAt"]
+    queryField: "plfilApplicationsByUsernameSortedByDate"
+  )
+  @key(
+    name: "plfilApplicationsByAuditionIDSortedByDate"
+    fields: ["auditionID", "createdAt"]
+    queryField: "getPlfilApplicationsByAuditionIDSortedByDate"
+  ) {
+  id: ID!
+  type: String
+  createdAt: String
+  applicantAwsID: String
+  applicantUsername: String
+  applicantProfileID: String
+  auditionID: String
+  roleID: String
+  group: Int
+}
+
+type BoardPostModel
+  @model
+  @key(
+    name: "boardPostsByDate"
+    fields: ["type", "createdAt"]
+    queryField: "getBoardPostsByDate"
+  )
+  @key(
+    name: "boardPostsByShowAtLandingPageSortedByCreatedAt"
+    fields: ["showAtLandingPage", "createdAt"]
+    queryField: "getBoardPostsByShowAtLandingPageSortedByCreatedAt"
+  )
+  @key(
+    name: "boardPostsByCategorySortedByCreatedAt"
+    fields: ["category", "createdAt"]
+    queryField: "getBoardPostsByCategorySortedByCreatedAt"
+  )
+  @key(
+    name: "boardPostsByHeadSortedByCreatedAt"
+    fields: ["head", "createdAt"]
+    queryField: "getBoardPostsByHeadSortedByCreatedAt"
+  )
+  @key(
+    name: "boardPostsByShowAtProfileTourPageSortedByCreatedAt"
+    fields: ["showAtProfileTourPage", "createdAt"]
+    queryField: "getBoardPostsByShowAtProfileTourPageSortedByCreatedAt"
+  )
+  @searchable {
+  id: ID!
+  awsID: String
+  type: String
+  username: String
+  nickname: String
+  title: String
+  contents: String
+  image: String
+  createdAt: AWSDateTime
+  category: String
+  subCategory: String
+  head: String
+  deletedAt: AWSDateTime
+  views: Int
+  wysiwyg: String
+  imagePaths: [String]
+  videoPaths: [String]
+  likeNum: Int #좋아요 합계
+  likeUsernameList: [String] #좋아요 누른 유저List
+  bookMarkNum: Int #북마크 합계
+  bookMarkUsernameList: [String] #북마크 누른 유저List
+  commentsNum: Int #댓글 개수
+  showAtLandingPage: Int # 해당 게시글(공지사항)을 홈페이지 메인에서 보여줄지 1:show
+  showAtProfileTourPage: Int # 해당 게시글(공지사항)을 프로필투어에서 보여줄지 1:show
+  startAt: AWSDateTime
+  endAt: AWSDateTime
+  additionalInfo: AWSJSON #이벤트/제휴용 company, eventLink, eventBenefits, applyWay
+}
+
+type PostModel
+  @model
+  @searchable
+  @key(
+    name: "postsByDate"
+    fields: ["type", "createdAt"]
+    queryField: "getPostsByDate"
+  )
+  @key(
+    name: "postsByShowAtLandingPageSortedByCreatedAt"
+    fields: ["showAtLandingPage", "createdAt"]
+    queryField: "getPostsByShowAtLandingPageSortedByCreatedAt"
+  )
+  @key(
+    name: "postsByCategorySortedByCreatedAt"
+    fields: ["category", "createdAt"]
+    queryField: "getPostsByCategorySortedByCreatedAt"
+  )
+  @key(
+    name: "postsByHeadSortedByCreatedAt"
+    fields: ["head", "createdAt"]
+    queryField: "getPostsByHeadSortedByCreatedAt"
+  )
+  @key(
+    name: "postsByShowAtProfileTourPageSortedByCreatedAt"
+    fields: ["showAtProfileTourPage", "createdAt"]
+    queryField: "getPostsByShowAtProfileTourPageSortedByCreatedAt"
+  ) {
+  id: ID!
+  awsID: String
+  type: String
+  username: String
+  nickname: String
+  title: String
+  contents: String
+  image: String
+  createdAt: AWSDateTime
+  category: String
+  subCategory: String
+  head: String
+  deletedAt: AWSDateTime
+  views: Int
+  wysiwyg: String
+  imagePaths: [String]
+  videoPaths: [String]
+  likeNum: Int #좋아요 합계
+  likeUsernameList: [String] #좋아요 누른 유저List
+  bookMarkNum: Int #북마크 합계
+  bookMarkUsernameList: [String] #북마크 누른 유저List
+  commentsNum: Int #댓글 개수
+  showAtLandingPage: Int # 해당 게시글(공지사항)을 홈페이지 메인에서 보여줄지 1:show
+  showAtProfileTourPage: Int # 해당 게시글(공지사항)을 프로필투어에서 보여줄지 1:show
+  startAt: AWSDateTime
+  endAt: AWSDateTime
+  additionalInfo: AWSJSON #이벤트/제휴용 company, eventLink, eventBenefits, applyWay
+}
+
+type BoardCommentModel
+  @model
+  @searchable
+  @key(
+    name: "boardCommentsByPostID"
+    fields: ["postID", "createdAt"]
+    queryField: "getBoardCommentsByPostID"
+  ) {
+  id: ID!
+  awsID: String
+  type: String
+  postID: String
+  parentId: String
+  parentNickname: String
+  username: String
+  nickname: String
+  comment: String
+  private: String
+  isVisitor: Boolean
+  password: String
+  createdAt: String!
+  category: String
+  deletedAt: String
+  admin: Boolean
+  likeNum: Int #좋아요 합계
+  likeUsernameList: [String] #좋아요 누른 유저List
+}
+
+type SelectActorImageModel
+  @model
+  @key(
+    name: "selectActorImageModelsByActorProfileID"
+    fields: ["profileID", "createdAt"]
+    queryField: "getSelectActorImageModelsByActorProfileID"
+  ) {
+  id: ID!
+  awsID: String!
+  type: String
+  profileID: String
+  username: String
+  createdAt: String!
+  category: String
+  deletedAt: String
+  keyword: String
+  keywords: [String]
+  times: [String]
+  allImagesNum: Int
+  checkedImagesNum: Int
+  ip: String
+}
+
+type AuditionRoleModel @model {
+  id: ID!
+  awsID: String!
+  type: String
+  profileID: String
+  username: String
+  auditionID: String
+  createdAt: String!
+  deletedAt: String
+  roleGrade: String
+  gender: String
+  roleName: String
+  applyAgeStart: Int
+  applyAgeEnd: Int
+  roleDescription: String
+  roleRemark: String
+  emailApplyForm: String
+  applicants: [String]
+  roleAge: String
+  applyNum: Int
+}
+
+type PlfilStatus @model {
+  id: ID!
+  num: Int
+  statusJson: AWSJSON
+}
+
+type ProfileTourModel
+  @model
+  @key(
+    name: "profileTourByStateSortedByCreatedAt"
+    fields: ["state", "createdAt"]
+    queryField: "getProfileTourByStateSortedByCreatedAt"
+  )
+  @key(
+    name: "profileTourSortedByCreatedAt"
+    fields: ["type", "createdAt"]
+    queryField: "getProfileTourByCreatedAt"
+  )
+  @key(
+    name: "profileTourSortedByUpdatedAt"
+    fields: ["type", "updatedAt"]
+    queryField: "getProfileTourByUpdatedAt"
+  ) {
+  id: ID!
+  awsID: String
+  type: String
+  username: String
+  state: String
+  category: String
+  company: String
+  workTitle: String
+  location: String
+  locationDetail: String
+  note: String
+  acceptApply: Boolean #deprecated
+  mainActor: String
+  director: String
+  detail: String
+  createdAt: String
+  updatedAt: String
+  closedAt: String
+  deletedAt: String
+  tourGroup: AWSJSON
+  new: Boolean
+  auditionId: String
+  lat: String #위도
+  lng: String #경도
+  private: AWSJSON
+  hideInfo: Boolean
+  links: [String]
+}
+
+type ProfileTourApplicationModel
+  @model
+  @key(
+    name: "profileTourApplicationsByUsernameSortedByDate"
+    fields: ["username", "createdAt"]
+    queryField: "getProfileTourApplicationsByUsernameSortedByDate"
+  )
+  @key(
+    name: "profileTourApplicationsByStatusSortedByDate"
+    fields: ["status", "createdAt"]
+    queryField: "ProfileTourApplicationsByStatusSortedByDate"
+  ) {
+  id: ID!
+  type: String
+  username: String #사용자 아이디
+  profileTourId: String
+  amount: Int
+  status: String
+  statusCode: Int
+  createdAt: String #생성날짜
+  updatedAt: String
+  deletedAt: String
+  profileTourInfoJson: AWSJSON
+}
+
+type OrderModel
+  @model
+  @key(
+    name: "orderSortedByCreatedAt"
+    fields: ["type", "createdAt"]
+    queryField: "getOrderSortedByCreatedAt"
+  )
+  @key(
+    name: "orderByCategorySortedByCreatedAt"
+    fields: ["category", "createdAt"]
+    queryField: "getOrderByCategorySortedByCreatedAt"
+  )
+  @key(
+    name: "orderByStatusSortedByCreatedAt"
+    fields: ["status", "createdAt"]
+    queryField: "getStatusByCategorySortedByCreatedAt"
+  )
+  @key(
+    name: "orderByUsernameSortedByCreatedAt"
+    fields: ["username", "createdAt"]
+    queryField: "getOrderByUsernameSortedByCreatedAt"
+  )
+  @searchable {
+  id: ID!
+  orderHistory: [AWSJSON]
+  type: String
+  username: String
+  productJsons: [AWSJSON]
+  status: String
+  category: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  deletedAt: String
+  totalAmount: Int
+  discountAmount: Int
+  paymentAmount: Int
+  shipAddress: String
+  shipAddressDetail: String
+  postCode: String
+  recipient: String
+  recipientPhone: String
+  phone: String
+  name: String
+  pay_method: String
+  escrow: Boolean
+  merchant_uid: String
+  amount: Int
+  pg: String
+  buyer_name: String
+  buyer_tel: String
+  buyer_email: String
+  imp_uid: String
+  actorName: String
+  actorPdf: String
+  imageJsons: [AWSJSON]
+  note: String
+  images: [String]
+  printImages: [String]
+  profileTourImages: [String]
+  usedProfileTourCouponNum: Int
+  couponDiscountAmount: Int
+  allSelectDiscountAmount: Int
+}
+
+type CouponHistory
+  @model
+  @key(
+    name: "couponHistorySortedByCreatedAt"
+    fields: ["type", "createdAt"]
+    queryField: "getCouponHistorySortedByCreatedAt"
+  )
+  @key(
+    name: "couponHistoryByUsername"
+    fields: ["username", "createdAt"]
+    queryField: "getCouponHistoryByUsername"
+  ) {
+  id: ID!
+  type: String
+  username: String #사용자 아이디
+  adminUsername: String
+  createdAt: String #생성날짜
+  updatedAt: String
+  deletedAt: String
+  addNum: Int #변동개수
+  sum: Int #변동한 후 개수
+  content: String #변동사유
+}
+
+type CompanyModel
+  @model
+  @key(
+    name: "companyModelSortedByCreatedAt"
+    fields: ["show", "createdAt"]
+    queryField: "getCompanyModelByshowSortedByCreatedAt"
+  )
+  @key(
+    name: "companyModelByshowSortedByUpdatedAt"
+    fields: ["show", "updatedAt"]
+    queryField: "getCompanyModelByshowSortedByUpdatedAt"
+  ) {
+  id: ID!
+  companyName: String
+  companyTypes: [String]
+  websiteUrl: String
+  staffs: [String]
+  clients: [String]
+  artistProfileIds: [String]
+  imageJson: AWSJSON
+  contacts: [AWSJSON]
+  description: String
+  createdAt: String
+  updatedAt: String
+  deletedAt: String
+  show: Int #0:invisible #1:visible #2highOrder #3Highorder
+}
+
+type PermissionGroupModel @model {
+  id: ID!
+  permissionGroupName: String!
+  permissionList: [String]
+  createdAt: String
+  updatedAt: String
+  deletedAt: String
+}
+
+type DeletedModel @model {
+  id: ID!
+  data: AWSJSON
+  deletedAt: String
+}
+
+type CastingListModel @model {
+  id: ID!
+  type: String
+  title: String
+  owner: String
+  createdAt: String
+  updatedAt: String
+  deletedAt: String
+  itemIds: [String]
+  profileIds: [String]
+}
+
+type CastingListItem
+  @model
+  @key(
+    name: "castingListItemsByCastingListIdSortedByCreatedAt"
+    fields: ["castingListId", "createdAt"]
+    queryField: "getCastingListItemsByCastingListId"
+  ) {
+  id: ID!
+  type: String
+  createdAt: String
+  castingListId: String
+  profileId: String
+  casterUsername: String
+  profileOwnerUsername: String
+  group: Int
+}
+
+type CouponModel
+  @model
+  @key(
+    name: "couponByTypeSortedByCreatedAt"
+    fields: ["type", "createdAt"]
+    queryField: "getCouponByTypeSortedByCreatedAt"
+  ) {
+  id: ID!
+  type: String
+  createdAt: String
+  updatedAt: String
+  deletedAt: String
+  usedAt: String
+  expiredAt: String
+  value: String
+  issuerId: String
+  userId: String
+  title: String
+  reason: String
+  canOverlap: Boolean
+  userList: [String]
+}
